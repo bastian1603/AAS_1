@@ -1,10 +1,10 @@
-<?php 
-    session_start();
+<?php
+session_start();
 
-    if(isset($_SESSION['username'])) {
-        header('Location: ../dashboard');
-        exit();
-    }
+if (isset($_SESSION['username'])) {
+    header('Location: ../dashboard');
+    exit();
+}
 
 ?>
 
@@ -17,7 +17,7 @@
     <title>Daftar Akun</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Link Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMb0RZ4lfoPim8bLqGgPZimj5CfopBz7vF5y9zW" crossorigin="anonymous">
     <style>
@@ -59,7 +59,8 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     <input type="text" class="form-control" name="username" id="username"
-                                        placeholder="Nama Anda" required>
+                                        placeholder="Nama Anda" required pattern="^[a-zA-Z0-9._]{5,20}$"
+                                        title="Username harus 5-20 karakter, tanpa spasi, dan hanya menggunakan huruf, angka, titik (.), atau garis bawah (_).">
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -67,6 +68,13 @@
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     <input type="email" class="form-control" name="email" id="email"
                                         placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" name="telp" id="telp"
+                                        placeholder="No. Telp" required>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -82,16 +90,20 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                    <input type="password" name="password" class="form-control" id="password"
-                                        placeholder="Password" required>
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" 
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+                                    title="Password harus memiliki minimal 8 karakter, termasuk 1 huruf besar, 1 huruf kecil, 1 angka, dan simbol diperbolehkan (misalnya: @$!%*?&)."
+                                    required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                    <input type="password" class="form-control" id="password"
-                                        placeholder="Konfirmasi password" required>
+                                    <input type="password" class="form-control" id="confirm_password" placeholder="Konfirmasi password" required>
                                 </div>
+                                <small id="passwordHelp" class="form-text text-danger" style="display: none;">
+                                    Password dan konfirmasi password tidak cocok.
+                                </small>
                             </div>
                             <div class="mb-3 form-check text-start">
                                 <input type="checkbox" class="form-check-input" id="rememberMe">
@@ -107,20 +119,33 @@
                 </div>
                 <div class="col-7 align-items-center kanan">
                     <h2>Selamat Datang, di Aplikasi <b class="text-primary">Livetifity</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla alias corporis quia sit quam consequuntur dolore, quis magni soluta officia voluptatibus vitae modi, vero reiciendis necessitatibus laborum deleniti consectetur veniam!
-                        Ratione aspernatur expedita fuga commodi. Debitis voluptatem vitae eum. Laudantium nostrum repellendus, ipsam quasi nesciunt.</p>
-                    <button type="button" class="btn btn-primary">Jelajahi</button>
+                    <p>Selamat datang di langkah pertamamu menuju hidup yang lebih terorganisir! Isi data dirimu, dan mulai nikmati kemudahan mengelola aktivitas untuk produktivitas yang maksimal. Daftar sekarang, karena harimu yang lebih baik dimulai di sini!</p>
+                    <button onclick="window.location.href='../login'" type="button" class="btn btn-primary">Masuk Sekarang</button>
                 </div>
 
             </div>
         </div>
     </div>
+    <script>
 
+        document.getElementById('confirm_password').addEventListener('input', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const passwordHelp = document.getElementById('passwordHelp');
+
+            if (password !== confirmPassword && confirmPassword !== '') {
+                e.preventDefault(); 
+                passwordHelp.style.display = 'block'; // Tampilkan pesan kesalahan
+            } else {
+                passwordHelp.style.display = 'none'; // Sembunyikan pesan kesalahan
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

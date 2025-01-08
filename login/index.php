@@ -55,9 +55,8 @@
 
                 <div class="col-7 align-items-center kiri">
                     <h2>Selamat Datang, di Aplikasi <b class="text-primary">Livetifity</b></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla alias corporis quia sit quam consequuntur dolore, quis magni soluta officia voluptatibus vitae modi, vero reiciendis necessitatibus laborum deleniti consectetur veniam!
-                    Ratione aspernatur expedita fuga commodi. Debitis voluptatem vitae eum. Laudantium nostrum repellendus, ipsam quasi nesciunt.</p>
-                    <button type="button" class="btn btn-primary">Jelajahi</button>
+                    <p>Selamat datang di langkah pertamamu menuju hidup yang lebih terorganisir! Masukkan akun kamu dan mulai nikmati kemudahan mengelola aktivitas untuk produktivitas yang maksimal. Jika kamu belum punya akun mari Daftar sekarang, karena harimu yang lebih baik dimulai di sini!</p>
+                    <button onclick="window.location.href='../daftar/'" type="button" class="btn btn-primary">Daftar Sekarang</button>
                 </div>
 
                 <div class="col-4 kanan">
@@ -85,10 +84,8 @@
                             <button type="submit" name="login" class="btn btn-primary w-100"><i class="fas fa-sign-in-alt"></i>
                                 Masuk</button>
                         </form>
-                        <p class="text-center mt-3">
-                            <a href="#" class="link-primary">Lupa Password?</a>
-                        </p>
-                        <p class="text-center">Belum punya akun? <a href="../daftar/" class="link-primary">Daftar Sekarang</a>
+                        
+                        <p class="text-center mt-3">Belum punya akun? <a href="../daftar/" class="link-primary">Daftar Sekarang</a>
                         </p>
                     </div>
                 </div>

@@ -1,9 +1,11 @@
-</section>
-
+</div>
+</div>
 </div>
 
 
 <!-- bagian yang tidak langsung muncul di web -->
+<!-- pada footer menyimpan modal untuk melakukan input data dan melakukan edit data -->
+
 
 <!-- modal input catatan -->
 <div class="modal fade" id="modal_catatan" tabindex="1" aria-labelledby="modal_catatan" aria-hidden="true">
@@ -46,16 +48,16 @@
             <form action="../config/tugas/input_tugas.php" method="POST">
 
                 <div class="modal-body">
-                    <label for="tugas_judul" class="form-label">Judul</label>
+                    <label for="judul_tugas" class="form-label">Judul</label>
                     <input type="text" name="judul_tugas" id="judul_tugas" class="form-control">
 
-                    <label for="hari_tenggat" class="form-label">Hari tenggat</label>
+                    <label for="tanggal_pengingat" class="form-label">Hari tenggat</label>
                     <input type="date" name="tanggal_pengingat" id="tanggal_pengingat" class="form-control">
 
-                    <label for="waktu_tenggat" class="form-label">Jam tenggat</label>
+                    <label for="waktu_pengingat" class="form-label">Jam tenggat</label>
                     <input type="time" name="waktu_pengingat" id="waktu_pengingat" class="form-control">
 
-                    <label for="catatan_isi" class="form-label">Isi</label>
+                    <label for="isi_tugas" class="form-label">Isi</label>
                     <textarea name="isi_tugas" id="isi_tugas" class="form-control"></textarea>
                 </div>
 
@@ -141,7 +143,9 @@
 </div>
 
 
-<div class="modal fade" id="modal_tantangan" tabindex="1" aria-labelledby="modal_catatan" aria-hidden="true">
+<!-- modal input tantangan murid -->
+
+<div class="modal fade" id="modal_tantangan_murid" tabindex="1" aria-labelledby="modal_tantangan_murid" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -149,7 +153,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
             </div>
 
-            <form action="" method="POST">
+            <form action="../config/tantangan/input_tantangan_murid.php" method="POST">
 
                 <div class="modal-body">
                     <label for="kode_tantangan" class="form-label">Masukkan kode tantangan</label>
@@ -157,11 +161,48 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </form>
 
+
+        </div>
+    </div>
+</div>
+
+
+<!-- modal input tantangan guru -->
+
+<div class="modal fade" id="modal_tantangan_guru" tabindex="1" aria-labelledby="modal_tantangan_guru" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal_tantangan_label">Membuat tantangan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+            </div>
+
+            <form action="../config/tantangan/input_tantangan_guru.php" method="POST">
+
+                <div class="modal-body">
+                    <label for="judul_tantangan" class="form-label">Judul</label>
+                    <input type="text" name="judul_tantangan" id="judul_tantangan" class="form-control">
+
+                    <label for="t_tanggal_pengingat" class="form-label">Hari tenggat</label>
+                    <input type="date" name="tanggal_pengingat" id="t_tanggal_pengingat" class="form-control">
+
+                    <label for="tg_waktu_pengingat" class="form-label">Jam tenggat</label>
+                    <input type="time" name="waktu_pengingat" id="tg_waktu_pengingat" class="form-control">
+
+                    <label for="isi_tantangan" class="form-label">Isi</label>
+                    <textarea name="isi_tantangan" id="isi_tantangan" class="form-control"></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </form>
 
         </div>
     </div>
@@ -217,17 +258,24 @@
                 <div class="modal-body">
                     <input type="hidden" name="id_tugas" id="edit_id_tugas">
 
-                    <label for="tugas_judul" class="form-label">Judul</label>
-                    <input type="text" name="judul_tugas" id="edit_judul_tugas" class="form-control">
+                    <label for="edit_judul_tugas" class="form-label">Judul</label>
+                    <input type="text" name="edit_judul_tugas" id="edit_judul_tugas" class="form-control">
 
-                    <label for="hari_tenggat" class="form-label">Hari tenggat</label>
-                    <input type="date" name="tanggal_pengingat" id="edit_tanggal_pengingat" class="form-control">
+                    <label for="status_tugas" class="form-label">Status</label>
+                    <select class="form-select" name="status_tugas" id="status_tugas">
+                        <option value="" disabled selected>Pilih Status</option>
+                        <option value="1">Selesai</option>
+                        <option value="0">Belum Selesai</option>
+                    </select>
 
-                    <label for="waktu_tenggat" class="form-label">Jam tenggat</label>
-                    <input type="time" name="waktu_pengingat" id="edit_waktu_pengingat" class="form-control">
+                    <label for="edit_tanggal_pengingat" class="form-label">Hari tenggat</label>
+                    <input type="date" name="edit_tanggal_pengingat" id="edit_tanggal_pengingat" class="form-control">
 
-                    <label for="catatan_isi" class="form-label">Isi</label>
-                    <textarea name="isi_tugas" id="edit_isi_tugas" class="form-control"></textarea>
+                    <label for="edit_waktu_pengingat" class="form-label">Jam tenggat</label>
+                    <input type="time" name="edit_waktu_pengingat" id="edit_waktu_pengingat" class="form-control">
+
+                    <label for="edit_isi_tugas" class="form-label">Isi</label>
+                    <textarea name="edit_isi_tugas" id="edit_isi_tugas" class="form-control"></textarea>
                 </div>
 
                 <div class="modal-footer">
@@ -240,29 +288,31 @@
     </div>
 </div>
 
-<!-- modal input jadwal -->
+<!-- modal edit jadwal -->
 <div class="modal fade" id="modal_edit_jadwal" tabindex="1" aria-labelledby="modal_jadwal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modal_catatan_label">Input jadwal</h1>
+                <h1 class="modal-title fs-5" id="modal_catatan_label">Edit jadwal</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
             </div>
 
-            <form action="../config/tugas/input_jadwal.php" method="POST">
+            <form action="../config/jadwal/edit_jadwal.php" method="POST">
 
                 <div class="modal-body">
-                    <label for="tantangan_judul" class="form-label">Judul</label>
-                    <input type="text" name="tantangan_judul" id="tantangan_judul" class="form-control">
+                    <input type="hidden" name="edit_id_jadwal" id="edit_id_jadwal">
 
-                    <label for="tanggal_mulai" class="form-label">Tanggal mulai</label>
-                    <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control">
+                    <label for="edit_judul_jadwal" class="form-label">Judul</label>
+                    <input type="text" name="edit_judul_jadwal" id="edit_judul_jadwal" class="form-control">
 
-                    <label for="tanggal_berakhir" class="form-label">Tanggal berakhir</label>
-                    <input type="date" name="tanggal_berakhir" id="tanggal_berakhir" class="form-control">
+                    <label for="edit_tanggal_mulai" class="form-label">Tanggal mulai</label>
+                    <input type="date" name="edit_tanggal_mulai" id="edit_tanggal_mulai" class="form-control">
 
-                    <label for="waktu_pengingat">Waktu</label>
-                    <input type="time" name="waktu_pengingat" id="waaktu_pengingat" class="form-control">
+                    <label for="edit_tanggal_berakhir" class="form-label">Tanggal berakhir</label>
+                    <input type="date" name="edit_tanggal_berakhir" id="edit_tanggal_berakhir" class="form-control">
+
+                    <label for="edit_waktu_pengingat_jadwal">Waktu</label>
+                    <input type="time" name="edit_waktu_pengingat" id="edit_waktu_pengingat_jadwal" class="form-control">
 
                     <label for="hari_melakukan">dilakukan pada hari</label>
 
@@ -284,7 +334,7 @@
 
                         <div class="form-check form-check-inline">
                             <input type="checkbox" value="1" name="list_hari[3]" id="kamis_edit" class="form-check-input">
-                            <label for="kmais_edit">Kamis</label>
+                            <label for="kamis_edit">Kamis</label>
                         </div>
 
                         <div class="form-check form-check-inline">
@@ -304,12 +354,12 @@
                     </div>
 
 
-                    <label for="catatan_isi" class="form-label">Isi</label>
-                    <textarea name="catatan_isi" id="catatan_isi" class="form-control"></textarea>
+                    <label for="edit_isi_jadwal" class="form-label">Isi</label>
+                    <textarea name="edit_isi_jadwal" id="edit_isi_jadwal" class="form-control"></textarea>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </form>
@@ -319,43 +369,118 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal_edit_tantangan" tabindex="1" aria-labelledby="modal_catatan" aria-hidden="true">
+
+<!-- Modal Pengumpulan tantangan -->
+<div class="modal fade" id="modalPengumpulan" tabindex="-1" aria-labelledby="modalPengumpulanLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPengumpulanLabel">Pengumpulan Tantangan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="pengumpulan.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Pilih File</label>
+                        <input class="form-control" type="file" id="file" name="file" required>
+                    </div>
+                    <!-- Input tersembunyi untuk ID Tantangan -->
+                    <input type="hidden" name="id_tantangan" value="">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Kirim Pengumpulan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal edit tantangan guru -->
+
+<div class="modal fade" id="modal_edit_tantangan" tabindex="1" aria-labelledby="modal_edit_tantangan_guru" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modal_catatan_label">Input Kode Tantangan</h1>
+                <h1 class="modal-title fs-5" id="modal_edit_tantangan_label">Membuat tantangan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
             </div>
 
-            <form action="" method="POST">
+            <form action="../config/tantangan/edit_tantangan_guru.php" method="POST">
 
                 <div class="modal-body">
-                    <label for="kode_tantangan" class="form-label">Masukkan kode tantangan</label>
-                    <input type="text" name="kode_tantangan" id="kode_tantangan" class="form-control">
+                    <input type="hidden" name="id_tantangan" id="edit_id_tantangan">
+
+                    <label for="edit_judul_tantangan" class="form-label">Judul</label>
+                    <input type="text" name="edit_judul_tantangan" id="edit_judul_tantangan" class="form-control">
+
+                    <label for="et_tanggal_pengingat" class="form-label">Hari tenggat</label>
+                    <input type="date" name="tanggal_pengingat" id="et_tanggal_pengingat" class="form-control">
+
+                    <label for="et_waktu_pengingat" class="form-label">Jam tenggat</label>
+                    <input type="time" name="waktu_pengingat" id="et_waktu_pengingat" class="form-control">
+
+                    <label for="edit_isi_tantangan" class="form-label">Isi</label>
+                    <textarea name="edit_isi_tantangan" id="edit_isi_tantangan" class="form-control"></textarea>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </form>
 
-
         </div>
     </div>
 </div>
+
+<!-- Modal untuk Menambah Nilai -->
+<div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="../config/tantangan/tambah_nilai.php"> <!-- Ganti dengan path handler Anda -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDataModalLabel">Tambah Nilai</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nilaiInput" class="form-label">Masukkan Nilai</label>
+                        <input type="number" class="form-control" id="nilaiInput" name="nilai" placeholder="Masukkan Nilai" required>
+                    </div>
+                    <!-- Menyimpan ID Pengguna dan ID Tantangan -->
+                    <input type="hidden" id="userId" name="user_id"> <!-- ID pengguna -->
+                    <input type="hidden" id="tantanganId" name="id_tantangan"> <!-- ID tantangan -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan Nilai</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
 
 <script>
+    // modal nya bekerja dengan memgambil data yang diberikan dari atribut data pada buttonnya 
+    // lalu value dari atribut tersebut dioperkan ke modal untuk melakukan edit data
+
 
     // untuk edit catatan
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const edit_buttons = document.querySelectorAll('.edit-catatan');
         edit_buttons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 const id_catatan = this.getAttribute('data-id-catatan');
                 const judul_catatan = this.getAttribute('data-judul-catatan');
                 const isi_catatan = this.getAttribute('data-isi-catatan');
@@ -366,12 +491,13 @@
             })
         });
     });
+
     
     // untuk edit tugas
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const edit_buttons = document.querySelectorAll('.edit-tugas');
         edit_buttons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 const id_tugas = this.getAttribute('data-id-tugas');
                 const judul_tugas = this.getAttribute('data-judul-tugas');
                 const tanggal_pengingat = this.getAttribute('data-tanggal-pengingat');
@@ -387,17 +513,18 @@
         });
     });
 
+
     // untuk edit jadwal
-    document.addEventListener('DOMContentLoaded', function () {
-        const edit_buttons =document.querySelectorAll('.edit-jadwal');
+    document.addEventListener('DOMContentLoaded', function() {
+        const edit_buttons = document.querySelectorAll('.edit-jadwal');
         edit_buttons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 const id_jadwal = this.getAttribute('data-id-jadwal');
-                const judul_jadwal= this.getAttribute('data-judul-jadwal');
+                const judul_jadwal = this.getAttribute('data-judul-jadwal');
                 const isi_jadwal = this.getAttribute('data-isi-jadwal');
                 const tanggal_mulai = this.getAttribute('data-tanggal-mulai');
                 const tanggal_selesai = this.getAttribute('data-tanggal-selesai');
-                const waktu_pengingat = this.getAttribute('data-waktu-pengingat');
+                const waktu_pengingat = this.getAttribute('data-waktu-pengingat-jadwal');
 
                 const senin = this.getAttribute('data-senin');
                 const selasa = this.getAttribute('data-selasa');
@@ -406,26 +533,70 @@
                 const jumat = this.getAttribute('data-jumat');
                 const sabtu = this.getAttribute('data-sabtu');
                 const minggu = this.getAttribute('data-minggu');
-                
-                
-                document.getElementById('edit-id-tugas').value = id_tugas;
-                document.getElementById('edit-judul-tugas').value = judul_tugas;
-                document.getElementById('edit-isi-tugas').value = isi_tugas;
-                document.getElementById('edit-tanggal-mulai').value = tanggal_mulai;
-                document.getElementById('edit-tanggal-selesai').value = tanggal_selesai;
-                document.getElementById('edit-waktu-pengingat').value = waktu_pengingat;
-                document.getElementById('edit-senin').value = senin;
-                document.getElementById('edit-selasa').value = selasa;
-                document.getElementById('edit-rabu').value = rabu;
-                document.getElementById('edit-kamis').value = kamis;
-                document.getElementById('edit-jumat').value = jumat;
-                document.getElementById('edit-sabtu').value = sabtu;
-                document.getElementById('edit-minggu').value = minggu;
-                
+
+                document.getElementById('edit_id_jadwal').value = id_jadwal;
+                document.getElementById('edit_judul_jadwal').value = judul_jadwal;
+                document.getElementById('edit_isi_jadwal').value = isi_jadwal;
+                document.getElementById('edit_tanggal_mulai').value = tanggal_mulai;
+                document.getElementById('edit_tanggal_berakhir').value = tanggal_selesai;
+                document.getElementById('edit_waktu_pengingat_jadwal').value = waktu_pengingat;
+                document.getElementById('senin_edit').checked = senin == 1 ? true : false;
+                document.getElementById('selasa_edit').checked = selasa == 1 ? true : false;
+                document.getElementById('rabu_edit').checked = rabu == 1 ? true : false;
+                document.getElementById('kamis_edit').checked = kamis == 1 ? true : false;
+                document.getElementById('jumat_edit').checked = jumat == 1 ? true : false;
+                document.getElementById('sabtu_edit').checked = sabtu == 1 ? true : false;
+                document.getElementById('minggu_edit').checked = minggu == 1 ? true : false;
+
             })
         });
     });
 
+    // untuk edit tugas
+    document.addEventListener('DOMContentLoaded', function() {
+        const edit_buttons = document.querySelectorAll('.edit-tantangan');
+        edit_buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id_tantangan = this.getAttribute('data-id-tantangan');
+                const judul_tantangan = this.getAttribute('data-judul-tantangan');
+                const tanggal_pengingat = this.getAttribute('data-tanggal-pengingat');
+                const waktu_pengingat = this.getAttribute('data-waktu-pengingat');
+                const isi_tantangan = this.getAttribute('data-isi-tantangan');
+
+                document.getElementById('edit_id_tantangan').value = id_tantangan;
+                document.getElementById('edit_judul_tantangan').value = judul_tantangan;
+                document.getElementById('et_tanggal_pengingat').value = tanggal_pengingat;
+                document.getElementById('et_waktu_pengingat').value = waktu_pengingat;
+                document.getElementById('edit_isi_tantangan').value = isi_tantangan;
+            });
+        });
+    });
+
+    function setIdTantangan(id) {
+        // Setel nilai ID tantangan ke input tersembunyi dalam modal
+        document.querySelector('#modalPengumpulan input[name="id_tantangan"]').value = id;
+    }
+
+    // nambah nilai di tantanan
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil elemen modal dan input yang akan diubah
+        const modal = document.getElementById('editDataModal');
+        const userIdInput = document.getElementById('userId');
+        const tantanganIdInput = document.getElementById('tantanganId');
+
+        // Menambahkan event listener untuk semua tombol dengan class 'edit-data-btn'
+        document.querySelectorAll('.edit-data-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Ambil ID pengguna dan ID tantangan dari data-id-user dan data-id-tantangan
+                const userId = this.getAttribute('data-id-user');
+                const tantanganId = this.getAttribute('data-id-tantangan');
+
+                // Isi input hidden dengan ID pengguna dan ID tantangan tersebut
+                userIdInput.value = userId;
+                tantanganIdInput.value = tantanganId;
+            });
+        });
+    });
 </script>
 
 </body>

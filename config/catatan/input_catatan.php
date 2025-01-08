@@ -2,12 +2,19 @@
     include '../koneksi.php';
     include '../session.php';
 
+    // mengambil id tantangan dari variable post
+
     $judul_catatan = $_POST['catatan_judul'];
     $isi_catatan = $_POST['catatan_isi'];
-    $id_user = $_SESSION['id_user'];
+    
+    // mengeksekusi query
+    $execute = mysqli_query($conn, "INSERT INTO catatan(judul_catatan, isi_catatan, id_user) 
+    values ('$judul_catatan', '$isi_catatan', '$id_user')");
+    
 
-    $execute = mysqli_query($conn, "INSERT INTO catatan(judul_catatan, isi_catatan, id_user) values ('$judul_catatan', '$isi_catatan', '$id_user')");
-
+    // setelah query dijalankan
+    // jika berhail maka akan muncul alert berhasil
+    // jika gagal maka akan muncul alert gagal
     if($execute) {
         echo "<script>
                     alert('Data Berhasil Disimpan');
@@ -17,7 +24,9 @@
         echo "<script>
                     alert('Data Gagal Disimpan');
                     window.location = '../../catatan';
-                    </script>";
+            </script>";
     }
-
+    // setelah itu akan dipindahkan ke halaman catatan
 ?>
+
+

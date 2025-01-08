@@ -3,52 +3,61 @@ include '../koneksi.php';
 include '../session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $judul = $_POST['judul'];
-    $tanggal_mulai = $_POST['tanggal_mulai'];
-    $tanggal_berakhir = $_POST['tanggal_berakhir'];
-    $waktu_pengingat = $_POST['waktu_pengingat'];
-    $id_user = $_SESSION['id_user'];
+    
+    // mengambil id tantangan dari variable post
+    $id_jadwal = $_POST['edit_id_jadwal'];
+    $judul = $_POST['edit_judul_jadwal'];
+    $tanggal_mulai = $_POST['edit_tanggal_mulai'];
+    $tanggal_berakhir = $_POST['edit_tanggal_berakhir'];
+    $waktu_pengingat = $_POST['edit_waktu_pengingat'];
+    $isi_jadwal = $_POST['edit_isi_jadwal'];
 
-    if (isset($_POST['list_hari']) && is_array($_POST['list_hari'])) {
-        $data_jadwal = $_POST['list_hari'];
-    } else {
-        $data_jadwal = [];
+    $data_hari = $_POST['list_hari'];
+    $list_hari = [0, 0, 0, 0, 0, 0, 0]; // Default semua hari = 0
+
+    if (isset($_POST['list_hari'])) {
+        foreach ($_POST['list_hari'] as $index => $value) {
+            if (is_numeric($index) && $index >= 0 && $index <= 6) {
+                $list_hari[$index] = 1; // Set ke 1 jika checkbox dicentang
+            }
+        }
     }
 
-    $list_hari = [0, 0, 0, 0, 0, 0, 0]; 
-    foreach ($data_jadwal as $index => $hari) {
-        $list_hari[$index] = 1;  
-    }
-
-
-    $execute = "
+    // menginisiasi query
+    $query = "
         UPDATE jadwal 
         SET 
             judul_jadwal = '$judul',
             tanggal_mulai = '$tanggal_mulai',
-            tanggal_berakhir = '$tanggal_berakhir',
+            tanggal_selesai = '$tanggal_berakhir',
             waktu_pengingat = '$waktu_pengingat',
-            senin = {$list_hari[0]},
-            selasa = {$list_hari[1]},
-            rabu = {$list_hari[2]},
-            kamis = {$list_hari[3]},
-            jumat = {$list_hari[4]},
-            sabtu = {$list_hari[5]},
-            minggu = {$list_hari[6]}
-        WHERE id_user = $id_user
+            isi_jadwal = '$isi_jadwal',
+            senin = $list_hari[0],
+            selasa = $list_hari[1],
+            rabu = $list_hari[2],
+            kamis = $list_hari[3],
+            jumat = $list_hari[4],
+            sabtu = $list_hari[5],
+            minggu = $list_hari[6]
+        WHERE id_jadwal = $id_jadwal
     ";
 
- 
-    if (mysqli_query($conn, $execute)) {
+    // mengeksekusi query
+    // setelah query dijalankan
+    // jika berhail maka akan muncul alert berhasil
+    // jika gagal maka akan muncul alert gagal
+    if (mysqli_query($conn, $query)) {
         echo "<script>
                     alert('Data Berhasil Diubah');
-                    window.location.href = '../../catatan/';
+                    window.location.href = '../../jadwal/';
             </script>";
     } else {
         echo "<script>
-                    alert('Data Berhasil Diubah');
-                    window.location.href = '../../catatan/';
+                    alert('Data Gagal Diubah');
+                    window.location.href = '../../jadwal/';
             </script>" . mysqli_error($conn);
     }
+    // setelah itu akan dipindahkan ke halaman jadwal
+
 }
 ?>
