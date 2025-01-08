@@ -13,14 +13,15 @@
     
 
     // setelah query dijalankan
-    // jika berhail maka akan muncul alert berhasil
-    // jika gagal maka akan muncul alert gagal
     if($execute) {
+        // jika berhail maka akan muncul alert berhasil
+
         echo "<script>
                     alert('Data Berhasil Disimpan');
                     window.location = '../../catatan';
             </script>";
     }else{
+        // jika gagal maka akan muncul alert gagal
         echo "<script>
                     alert('Data Gagal Disimpan');
                     window.location = '../../catatan';

@@ -9,7 +9,7 @@
     $tanggal_pengingat = $_POST["tanggal_pengingat"];
     $jam_pengingat = $_POST["waktu_pengingat"];
 
-    // mengeksekusi queri
+    // mengeksekusi query
     $execute = mysqli_query($conn, "INSERT INTO tantangan(judul_tantangan, isi_tantangan, tanggal_pengingat, waktu_pengingat, id_pembuat) 
     VALUES ('$judul_tantangan', '$isi_tantangan', '$tanggal_pengingat', '$jam_pengingat', '$id_user')");
 
